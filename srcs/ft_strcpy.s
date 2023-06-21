@@ -1,6 +1,7 @@
 bits 64
 
-global ft_strcpy
+section .text
+    global ft_strcpy
 
 ;   rax = retour de fonction
 ;   rcx = compteur de boucle
@@ -8,7 +9,6 @@ global ft_strcpy
 ;   rsi = deuxième argument => src
 ;   al = registre 8 bits => taille d'un char
 
-section .text
     ft_strcpy:
         xor rcx, rcx            ; On met notre compteur à 0
 
