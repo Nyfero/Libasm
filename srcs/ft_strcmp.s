@@ -27,7 +27,7 @@ section .text
         mov rax, -1                 ; On met -1 dans rax
         jmp _return                 ; On termine le programme
 
-    _greater
+    _greater:
         mov rax, 1                  ; On met 1 dans rax
         jmp _return                 ; On termine le programme
 

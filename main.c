@@ -89,11 +89,23 @@ int main() {
 	printf(GREEN "My function" RESET "\n");
 	printf(YELLOW "True function" RESET "\n");
 
-	// strlen_test();
-	// strcpy_test();
+	strlen_test();
+	strcpy_test();
 	// strcmp_test();
 	// strdup_test();
 	// read_test();
 
-	printf("%s\n", ft_strdup("test"));
+	const char* original = "Hello, World!";
+    char* duplicated = ft_strdup(original);
+
+    if (duplicated != NULL) {
+        printf("Original: %s\n", original);
+        printf("Duplicated: %s\n", duplicated);
+
+        // Clean up the allocated memory
+        free(duplicated);
+    } else {
+        printf("Failed to allocate memory for duplication.\n");
+    }
+	return (0);
 }
