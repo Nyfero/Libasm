@@ -1,9 +1,11 @@
 bits 64
+    
 
 section .text
-    extern  ft_strlen
+
     extern  malloc
     extern  __errno_location
+    extern  ft_strlen
     extern  ft_strcpy
 
     global ft_strdup
