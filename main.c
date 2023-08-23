@@ -1,10 +1,11 @@
 #include "./inc/libasm.h"
 
-# define STRLEN(x)			printf("%s = " GREEN "%ld" RESET " | " YELLOW "%ld" RESET "\n", x, ft_strlen(x), strlen(x));
-# define STRCPY(a, b)		printf(GREEN "%s" RESET " | " YELLOW "%s" RESET "\n", ft_strcpy(a, b), strcpy(a, b));
-# define STRCMP(a, b)		printf("%s:%s = " GREEN "%d" RESET " | " YELLOW "%d" RESET "\n", a, b, ft_strcmp(a, b), strcmp(a, b));
-# define STRDUP(x)			printf("%s = " GREEN "%s" RESET " | " YELLOW "%s" RESET "\n", x, ft_strdup(x), strdup(x));
-// # define READ(fd, size, count) printf("fd = " GREEN "%ld" RESET " | " YELLOW "%ld" RESET "\n", ft_read(fd, size, count), read(fd, size, count));
+# define STRLEN(x)			printf("\"%s\"\n" GREEN "%ld" RESET " | " YELLOW "%ld" RESET "\n", x, ft_strlen(x), strlen(x));
+# define STRCPY(a, b)		printf("\"" GREEN "%s" RESET "\" | \"" YELLOW "%s" RESET "\"\n", ft_strcpy(a, b), strcpy(a, b));
+# define STRCMP(a, b)		printf("\"%s\" : \"%s\"\n" GREEN "%d" RESET " | " YELLOW "%d" RESET "\n", a, b, ft_strcmp(a, b), strcmp(a, b));
+# define STRDUP(x)			printf("\"%s\"\n\"" GREEN "%s" RESET "\" | \"" YELLOW "%s" RESET "\"\n", x, ft_strdup(x), strdup(x));
+# define WRITE(fd, buf, count) printf(GREEN "%ld" RESET " | " YELLOW "%ld" RESET "\n\n", ft_write(fd, buf, count), write(fd, buf, count));
+# define READ(fd, size, count) printf(GREEN "%ld" RESET " | " YELLOW "%ld" RESET "\n\n", ft_read(fd, size, count), read(fd, size, count));
 
 void strlen_test() {
 	printf(CYAN "\n\t\t*** STRLEN ***\n" RESET);
@@ -19,81 +20,107 @@ void strlen_test() {
 }
 
 void strcpy_test() {
-	char	str1[0] = "";
-	char	str2[3] = "HEY";
-	char	str3[8] = "weshhhh";
-	char	str4[2] = " ";
-	char	str5[4] = "lol";
-	char	str6[4] = "hih";
-	char	str7[4] = "mdr";
+	char source1[] = "Hello, world!";
+    char destination1[20];
+	char source2[] = "Testing strcpy implementation";
+    char destination2[30];
+	char source3[] = "";
+    char destination3[10];
+	char source4[] = "!@#$%^&*()_+";
+    char destination4[30];
+	char source5[] = "Testing strcpy destination string is smaller than source string";
+    char destination5[20];
+	char source6[] = "Testing strcpy destination string is bigger than source string";
+    char destination6[70];
 
 	printf(CYAN "\n\t\t*** STRCPY ***\n" RESET);
-	printf("%s : %s = ", str1, str2);
-	STRCPY(str1, str2)
-	printf("%s : %s = ", str3, str4);
-	STRCPY(str3, str4)
-	printf("%s : %s = ", str5, str6);
-	STRCPY(str5, str6)
-	printf("%s : %s = ", str6, str7);
-	STRCPY(str6, str7)
-	printf("%s : %s = ", str7, str4);
-	STRCPY(str7, str4)
+	STRCPY(destination1, source1)
+	STRCPY(destination2, source2)
+	STRCPY(destination3, source3)
+	STRCPY(destination4, source4)
+	STRCPY(destination5, source5)
+	STRCPY(destination6, source6)
 	printf(CYAN "\n\t\t*** DONE ***\n" RESET);
 }
 
 void strcmp_test() {
 	printf(CYAN "\n\t\t*** STRCMP ***\n" RESET);
+	STRCMP("Hello, world!", "Testing strcpy implementation")
+	STRCMP("Hello, world!", "1234567890")
+	STRCMP("Testing strcpy implementation", "1234567890")
+	STRCMP("abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+	STRCMP("Special characters: !@#$%^&*()", "Special characters: !@#$%^&*()")
+	STRCMP("Hello, world!", "Special characters: !@#$%^&*()")
+	STRCMP("Hello, world!", "")
 	STRCMP("", "")
-	STRCMP("toto", "toto")
-	STRCMP("", "toto")
-	STRCMP("toto", "")
-	STRCMP("toto", "totobar")
-	STRCMP("totobar", "toto")
+	STRCMP("", "Hello, world!")
+	STRCMP("Short", "Special characters: !@#$%^&*()")
+	STRCMP("Equal strings", "Equal strings")
+	STRCMP("Hello, world!", "Equal strings")
 	printf(CYAN "\n\t\t*** DONE ***\n" RESET);
 }
 
 void strdup_test() {
 	printf(CYAN "\n\t\t*** STRDUP ***\n" RESET);
-	STRDUP("test12345");
-	STRDUP("a");
-	STRDUP("test");
-	STRDUP("");
-	STRDUP("\n");
-	STRDUP("abc");
-	STRDUP("asl;fjl;asdjfjkasdl;fjadjsf");
-	STRDUP("abc\0abc");
-	STRDUP("Lorem ipsum dolor sit amet, consectetur adipiscingelit. Sed in malesuada purus. Etiam a scelerisque massa. Ut non euismod elit. Aliquambibendum dolor mi, id fringilla tellus pulvinar eu. Fusce vel fermentum sem. Crasvolutpat, eros eget rhoncus rhoncus, diam augue egestas dolor, vitae rutrum nisifelis sed purus. Mauris magna ex, mollis non suscipit eu, lacinia ac turpis. Phasellusac tortor et lectus fermentum lobortis eu at mauris. Vestibulum sit amet posueretortor, sit amet consequat amet.");
+	STRDUP("Hello, world!")
+	STRDUP("Testing strdup implementation")
+	STRDUP("1234567890")
+	STRDUP("abcdefghijklmnopqrstuvwxyz")
+	STRDUP("ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+	STRDUP("Special characters: !@#$%^&*()")
+	STRDUP("")
+	STRDUP("a")
+	STRDUP("Short")
+	STRDUP("Lorem ipsum dolor sit amet, consectetur adipiscingelit. Sed in malesuada purus. Etiam a scelerisque massa. Ut non euismod elit. Aliquambibendum dolor mi, id fringilla tellus pulvinar eu. Fusce vel fermentum sem. Crasvolutpat, eros eget rhoncus rhoncus, diam augue egestas dolor, vitae rutrum nisifelis sed purus. Mauris magna ex, mollis non suscipit eu, lacinia ac turpis. Phasellusac tortor et lectus fermentum lobortis eu at mauris. Vestibulum sit amet posueretortor, sit amet consequat amet.")
 	printf(CYAN "\n\t\t*** DONE ***\n" RESET);
 }
 
-// void read_test() {
-// 	int		fd;
-// 	char	buf[100];
-// 	int		ret;
+void write_test() {
+	printf(CYAN "\n\t\t*** WRITE ***\n" RESET);
+	WRITE(1, "Hello, world!\n", 14)
+	WRITE(1, "Testing strdup implementation\n", 31)
+	WRITE(1, "1234567890\n", 11)
+	WRITE(2, "abcdefghijklmnopqrstuvwxyz\n", 27)
+	WRITE(2, "ABCDEFGHIJKLMNOPQRSTUVWXYZ\n", 27)
+	WRITE(1, "Special characters: !@#$%^&*()\n", 31)
+	WRITE(1, "1234567890\n", 0)
+	WRITE(1, "", 1)
+	WRITE(1, "a\n", 2)
+	WRITE(3, "Short\n", 7)
+	WRITE(1, "Lorem ipsum dolor sit amet, consectetur adipiscingelit. Sed in malesuada purus. Etiam a scelerisque massa. Ut non euismod elit. Aliquambibendum dolor mi, id fringilla tellus pulvinar eu. Fusce vel fermentum sem. Crasvolutpat, eros eget rhoncus rhoncus, diam augue egestas dolor, vitae rutrum nisifelis sed purus. Mauris magna ex, mollis non suscipit eu, lacinia ac turpis. Phasellusac tortor et lectus fermentum lobortis eu at mauris. Vestibulum sit amet posueretortor, sit amet consequat amet.\n", 501)
+	printf(CYAN "\n\t\t*** DONE ***\n" RESET);
+}
 
-// 	printf(CYAN "\n\t\t*** READ ***\n" RESET);
-// 	fd = open("Makefile", O_RDONLY);
-// 	ret = READ(fd, buf, 100);
-// 	buf[ret] = '\0';
-// 	close(fd);
-// 	printf(CYAN "\n\t\t*** DONE ***\n" RESET);
-// }
+void read_test() {
+	int		fd;
+	char	buf[100];
+	int		ret;
 
-// void write_test() {
-// 	int fd;
-	
-// }
-
+	printf(CYAN "\n\t\t*** READ ***\n" RESET);
+	fd = open("osef", O_RDONLY);
+	if (!fd) {
+		printf(CYAN "Error: open failed\n" RESET);
+		return ;
+	}
+	ret = READ(fd, buf, 50)
+	ret = READ(fd, buf, 100)
+	ret = READ(fd, buf, 1000)
+	// ret = READ(fd, buf, -1)
+	buf[ret] = '\0';
+	close(fd);
+	printf(CYAN "\n\t\t*** DONE ***\n" RESET);
+}
 
 int main() {
 	printf(GREEN "My function" RESET "\n");
 	printf(YELLOW "True function" RESET "\n");
 
-	// strlen_test();
-	strcpy_test();
-	// strcmp_test();
-	// strdup_test();
-	// read_test();
+	// strlen_test();		// OK
+	// strcpy_test();		// OK
+	// strcmp_test();		// OK
+	// strdup_test();		// OK
+	// write_test();		// OK
+	read_test();
 
 	return (0);
 }
