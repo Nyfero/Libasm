@@ -11,14 +11,10 @@ section .text
 ;   rdx = troisieme argument => le nombre d'élément à lire
 
     ft_read:
-        mov rax, 0      ; syscall pour read
+        xor rax, rax    ; syscall pour read (rax = 0)
         syscall         ; On appelle read
-
         test rax, rax   ; On regarde si read renvoie -1
         js _failure     ; On gère l'erreur
-
-    _return:
-        mov rax, rdx    ; On met le nombre d'élement lu dans rax
         ret             ; On renvoie rax
 
     _failure:

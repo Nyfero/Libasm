@@ -97,17 +97,25 @@ void read_test() {
 	int		ret;
 
 	printf(CYAN "\n\t\t*** READ ***\n" RESET);
-	fd = open("osef", O_RDONLY);
+	fd = open("Makefile", O_RDONLY);
 	if (!fd) {
 		printf(CYAN "Error: open failed\n" RESET);
 		return ;
 	}
 	ret = READ(fd, buf, 50)
+	buf[ret] = '\0';
 	ret = READ(fd, buf, 100)
-	ret = READ(fd, buf, 1000)
-	// ret = READ(fd, buf, -1)
 	buf[ret] = '\0';
 	close(fd);
+
+	int fd2 = open("test.txt", O_RDONLY);
+	if (!fd2) {
+		printf(CYAN "Error: open failed\n" RESET);
+		return ;
+	}
+	ret = READ(fd2, buf, 50)
+	buf[ret] = '\0';
+	close(fd2);
 	printf(CYAN "\n\t\t*** DONE ***\n" RESET);
 }
 
@@ -115,11 +123,11 @@ int main() {
 	printf(GREEN "My function" RESET "\n");
 	printf(YELLOW "True function" RESET "\n");
 
-	// strlen_test();		// OK
-	// strcpy_test();		// OK
-	// strcmp_test();		// OK
-	// strdup_test();		// OK
-	// write_test();		// OK
+	strlen_test();
+	strcpy_test();
+	strcmp_test();
+	strdup_test();
+	write_test();
 	read_test();
 
 	return (0);
