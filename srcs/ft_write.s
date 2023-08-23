@@ -11,12 +11,8 @@ section .text
     ft_write:
         mov rax, 1      ; syscall pour write (tous les paramètres sont déjà au bon endroit)
         syscall         ; On appelle write
-
         test rax, rax   ; On vérifie qu'il n'y a pas eu d'erreur
         js _failure     ; On gère l'erreur
-
-    _return:
-        mov rax, rdx    ; On met le nombre de byte que l'on vient d'écrire dans rax
         ret             ; On renvoie rax
     
     _failure:
