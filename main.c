@@ -3,7 +3,7 @@
 # define STRLEN(x)			printf("%s = " GREEN "%ld" RESET " | " YELLOW "%ld" RESET "\n", x, ft_strlen(x), strlen(x));
 # define STRCPY(a, b)		printf(GREEN "%s" RESET " | " YELLOW "%s" RESET "\n", ft_strcpy(a, b), strcpy(a, b));
 # define STRCMP(a, b)		printf("%s:%s = " GREEN "%d" RESET " | " YELLOW "%d" RESET "\n", a, b, ft_strcmp(a, b), strcmp(a, b));
-// # define STRDUP(x)			printf("%s = " GREEN "%s" RESET " | " YELLOW "%s" RESET "\n", x, ft_strdup(x), strdup(x));
+# define STRDUP(x)			printf("%s = " GREEN "%s" RESET " | " YELLOW "%s" RESET "\n", x, ft_strdup(x), strdup(x));
 // # define READ(fd, size, count) printf("fd = " GREEN "%ld" RESET " | " YELLOW "%ld" RESET "\n", ft_read(fd, size, count), read(fd, size, count));
 
 void strlen_test() {
@@ -19,13 +19,13 @@ void strlen_test() {
 }
 
 void strcpy_test() {
-	char	str1[] = "";
-	char	str2[] = "HEY";
-	char	str3[] = "weshhhh";
-	char	str4[] = " ";
-	char	str5[] = "lol";
-	char	str6[] = "hih";
-	char	str7[] = "mdr";
+	char	str1[0] = "";
+	char	str2[3] = "HEY";
+	char	str3[8] = "weshhhh";
+	char	str4[2] = " ";
+	char	str5[4] = "lol";
+	char	str6[4] = "hih";
+	char	str7[4] = "mdr";
 
 	printf(CYAN "\n\t\t*** STRCPY ***\n" RESET);
 	printf("%s : %s = ", str1, str2);
@@ -52,19 +52,19 @@ void strcmp_test() {
 	printf(CYAN "\n\t\t*** DONE ***\n" RESET);
 }
 
-// void strdup_test() {
-// 	printf(CYAN "\n\t\t*** STRDUP ***\n" RESET);
-// 	STRDUP("test12345");
-// 	STRDUP("a");
-// 	STRDUP("test");
-// 	STRDUP("");
-// 	STRDUP("\n");
-// 	STRDUP("abc");
-// 	STRDUP("asl;fjl;asdjfjkasdl;fjadjsf");
-// 	STRDUP("abc\0abc");
-// 	STRDUP("Lorem ipsum dolor sit amet, consectetur adipiscingelit. Sed in malesuada purus. Etiam a scelerisque massa. Ut non euismod elit. Aliquambibendum dolor mi, id fringilla tellus pulvinar eu. Fusce vel fermentum sem. Crasvolutpat, eros eget rhoncus rhoncus, diam augue egestas dolor, vitae rutrum nisifelis sed purus. Mauris magna ex, mollis non suscipit eu, lacinia ac turpis. Phasellusac tortor et lectus fermentum lobortis eu at mauris. Vestibulum sit amet posueretortor, sit amet consequat amet.");
-// 	printf(CYAN "\n\t\t*** DONE ***\n" RESET);
-// }
+void strdup_test() {
+	printf(CYAN "\n\t\t*** STRDUP ***\n" RESET);
+	STRDUP("test12345");
+	STRDUP("a");
+	STRDUP("test");
+	STRDUP("");
+	STRDUP("\n");
+	STRDUP("abc");
+	STRDUP("asl;fjl;asdjfjkasdl;fjadjsf");
+	STRDUP("abc\0abc");
+	STRDUP("Lorem ipsum dolor sit amet, consectetur adipiscingelit. Sed in malesuada purus. Etiam a scelerisque massa. Ut non euismod elit. Aliquambibendum dolor mi, id fringilla tellus pulvinar eu. Fusce vel fermentum sem. Crasvolutpat, eros eget rhoncus rhoncus, diam augue egestas dolor, vitae rutrum nisifelis sed purus. Mauris magna ex, mollis non suscipit eu, lacinia ac turpis. Phasellusac tortor et lectus fermentum lobortis eu at mauris. Vestibulum sit amet posueretortor, sit amet consequat amet.");
+	printf(CYAN "\n\t\t*** DONE ***\n" RESET);
+}
 
 // void read_test() {
 // 	int		fd;
@@ -90,9 +90,10 @@ int main() {
 	printf(YELLOW "True function" RESET "\n");
 
 	// strlen_test();
-	// strcpy_test();
-	strcmp_test();
+	strcpy_test();
+	// strcmp_test();
 	// strdup_test();
 	// read_test();
 
+	return (0);
 }

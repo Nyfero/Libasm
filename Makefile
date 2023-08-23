@@ -39,7 +39,7 @@ fclean:			clean
 re:				fclean $(NAME)
 
 test:			$(NAME) $(INC) $(MAIN)
-				gcc $(FLAGS) $(MAIN) -L. -lasm -o $(TEST)
+				clang -no-pie $(FLAGS) $(MAIN) -L. -lasm -o $(TEST)
 				./$(TEST)
 
 .PHONY:			clean fclean re test $(NAME) all

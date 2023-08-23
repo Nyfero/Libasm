@@ -1,12 +1,12 @@
 bits 64
 
-global ft_strlen
+section .text
+    global ft_strlen
 
 ;   rax = retour de fonction
 ;   rcx = compteur de boucle
 ;   rdi = argument => chaine de char
 
-section .text
     ft_strlen:
         xor rcx, rcx            ; Compteur de boucle => initialiser à 0
 
