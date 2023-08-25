@@ -1,7 +1,7 @@
 #include "./inc/libasm.h"
 
 # define STRLEN(x)			printf("\"%s\"\n" GREEN "%ld" RESET " | " YELLOW "%ld" RESET "\n", x, ft_strlen(x), strlen(x));
-# define STRCPY(a, b)		printf("\"" GREEN "%s" RESET "\" | \"" YELLOW "%s" RESET "\"\n", ft_strcpy(a, b), strcpy(a, b));
+# define STRCPY(a, b)		printf("\"" GREEN "%s" RESET "\" | \"" YELLOW "%s" RESET "\" => %d\n", ft_strcpy(a, b), strcpy(a, b), strcmp(a, b));
 # define STRCMP(a, b)		printf("\"%s\" : \"%s\"\n" GREEN "%d" RESET " | " YELLOW "%d" RESET "\n", a, b, ft_strcmp(a, b), strcmp(a, b));
 # define STRDUP(x)			printf("\"%s\"\n\"" GREEN "%s" RESET "\" | \"" YELLOW "%s" RESET "\"\n", x, ft_strdup(x), strdup(x));
 # define WRITE(fd, buf, count) printf(GREEN "%ld" RESET " | " YELLOW "%ld" RESET "\n\n", ft_write(fd, buf, count), write(fd, buf, count));
@@ -105,6 +105,8 @@ void read_test() {
 	ret = READ(fd, buf, 50)
 	buf[ret] = '\0';
 	ret = READ(fd, buf, 100)
+	buf[ret] = '\0';
+	ret = READ(fd, buf, -1)
 	buf[ret] = '\0';
 	close(fd);
 

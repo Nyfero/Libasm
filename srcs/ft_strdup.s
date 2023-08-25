@@ -33,5 +33,5 @@ section .text
         neg rax                 ; On met rax en positif car l'erreur de malloc est négative
         mov rdi, rax            ; On met rax dans rdi pour passer l'erreur en paramètre à errno
         call __errno_location   ; On gère l'erreur
-        mov rax, rdi          ; On met la valeur de l'erreur dans rax 
+        mov rax, rdi            ; On met la valeur de l'erreur dans rax 
         ret                     ; On renvoie rax qui contient le retour d'erreur	
